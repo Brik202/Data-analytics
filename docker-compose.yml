@@ -92,6 +92,18 @@ services:
       - dbPort=5432
       - periodSec=1
     restart: always
+  jupyter:
+    build: ./jupyter
+    ports:
+      - "8888:8888"
+    env_file:
+      - .env
+    environment:
+      JUPYTER_TOKEN: devtoken
+      dbHost: db
+      dbPort: 5432
+    volumes:
+      - ./:/home/jovyan/work
 
 volumes:
   postgres_data:
